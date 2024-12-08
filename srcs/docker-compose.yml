@@ -9,6 +9,8 @@ services:
       - "80:80"
     depends_on:
       - wordpress
+#    networks:
+#      - inception
     restart: always
   wordpress:
     container_name: wordpress
@@ -16,4 +18,17 @@ services:
       context: ./requirements/wordpress
     volumes:
       - ./webroot:/var/www/html
+    depends_on:
+      - mariadb
+#    networks:
+#      - inception
+    restart: always
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./requirements/mariadb
+    volumes:
+      - ./database:/var/lib/mysql
+#    networks:
+#      - inception
     restart: always

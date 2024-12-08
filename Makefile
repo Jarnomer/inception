@@ -1,5 +1,4 @@
-NAME := inception
-
+SOURCE_FOLDER  := ./srcs/requirements
 COMPOSE_FILE   := ./srcs/docker-compose.yml
 DOCKER_COMPOSE := docker compose -f $(COMPOSE_FILE)
 
@@ -20,7 +19,8 @@ unpause:
 	${DOCKER_COMPOSE} unpause
 
 clean: down
-	@echo "need clean command!"
+	rm -rf $(SOURCE_FOLDER)/mariadb/database
+	rm -rf $(SOURCE_FOLDER)/wordpress/webroot
 
 fclean: clean
 	${DOCKER} system prune -f
