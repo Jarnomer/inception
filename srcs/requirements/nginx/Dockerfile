@@ -1,14 +1,12 @@
 FROM debian:latest
 
 RUN apt-get update && apt-get upgrade && \
-    apt-get install -y nginx openssl && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    apt-get install -y nginx && \
+    apt-get install -y openssl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-COPY conf/nginx.conf /etc/nginx/nginx.conf
-
-# COPY ./tools/entrypoint.sh /usr/local/bin/entrypoint.sh
-
-# RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY ./conf/default /etc/nginx/sites-available/.
 
 EXPOSE 443
 

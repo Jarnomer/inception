@@ -1,9 +1,19 @@
 services:
   nginx:
     container_name: nginx
-    build: ./requirements/nginx
+    build:
+      context: ./requirements/nginx
+    volumes:
+      - ./webroot:/var/www/html
     ports:
       - "80:80"
+    depends_on:
+      - wordpress
+    restart: always
   wordpress:
     container_name: wordpress
-    build: ./requirements/wordpress
+    build:
+      context: ./requirements/wordpress
+    volumes:
+      - ./webroot:/var/www/html
+    restart: always
