@@ -1,15 +1,21 @@
-FROM debian:latest
+# Use penultimate stable Alpine version
+FROM alpine:3.20
 
-RUN apt-get update && apt-get upgrade && \
-    apt-get install -y mariadb-server && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Update system and install packages
+RUN apk update && apk add --no-cache mariadb mariadb-client
 
-COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/.
-COPY ./tools/init.sql /etc/mysql/init.sql
+# Copy custom configuration file
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN mkdir -p /run/mysqld
+# Setup an entrypoint script
+COPY ./tools/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
+# Expose default port
 EXPOSE 3306
 
-CMD ["mysqld"]
+# Use entrypoint script
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Start in the foreground
+CMD ["mysqld_safe"]

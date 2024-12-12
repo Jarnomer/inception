@@ -1,29 +1,20 @@
-# run make and browse to your conf folder in other terminal
-# docker cp mariadb:/etc/mysql/mariadb.conf.d/50-server.cnf .
-
 [server]
-
-init_file = /etc/mysql/init.sql
 
 [mysqld]
 
-# Default name: mysql
-# Default address: 127.0.0.1
-# Default port: -
-
-user                    = root
+user                    = mysql
 pid-file                = /run/mysqld/mysqld.pid
+socket                  = /run/mysqld/mysqld.sock
 basedir                 = /usr
 datadir                 = /var/lib/mysql
 tmpdir                  = /tmp
-bind-address            = mariadb
 port                    = 3306
-
-expire_logs_days        = 10
 
 character-set-server    = utf8mb4
 collation-server        = utf8mb4_general_ci
 
 [embedded]
+
 [mariadb]
+
 [mariadb-10.11]

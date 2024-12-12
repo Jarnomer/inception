@@ -1,17 +1,21 @@
-FROM debian:latest
+# Use penultimate stable Alpine version
+FROM alpine:3.20
 
-RUN apt-get update && apt-get upgrade && \
-    apt-get install -y php-fpm && \
-    apt-get install -y php-mysqli && \
-    apt-get install -y curl && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Update system and install packages
+RUN apk update && apk add --no-cache php-fpm php-mysqli curl
 
-COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/.
+# Copy custom configuration file
+COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
 
+# Setup entrypoint script
+COPY ./tools/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Expose default port
 EXPOSE 9000
 
-RUN chmod +x ./tools/wordpress.sh
+# Use entrypoint script
+ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["./tools/wordpress.sh"]
-#CMD ["php-fpm8.2", "-F"]
+# Start in the foreground
+CMD ["php-fpm8.2", "-F"]
