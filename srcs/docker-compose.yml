@@ -4,7 +4,7 @@ services:
     image: nginx
     build: ./requirements/nginx
     volumes:
-      - webroot:/var/www/html
+      - ./webroot:/var/www/html
     depends_on:
       - wordpress
     env_file:
@@ -17,7 +17,7 @@ services:
     image: wordpress
     build: ./requirements/wordpress
     volumes:
-      - webroot:/var/www/html
+      - ./webroot:/var/www/html
     depends_on:
       - mariadb
     env_file:
@@ -30,7 +30,7 @@ services:
     image: mariadb
     build: ./requirements/mariadb
     volumes:
-      - database:/var/lib/mysql
+      - ./database:/var/lib/mysql
     env_file:
       - .env
     networks:
