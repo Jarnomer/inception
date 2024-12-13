@@ -8,24 +8,11 @@ up:
 	$(DOCKER_COMPOSE) up --build
 
 down:
-	$(DOCKER_COMPOSE) down
+	$(DOCKER_COMPOSE) down -v --rmi all
 
-restart: down up
-
-pause:
-	${DOCKER_COMPOSE} pause
-
-unpause:
-	${DOCKER_COMPOSE} unpause
+re: down up
 
 clean: down
-	rm -rf $(SOURCE_FOLDER)/mariadb/database
-	rm -rf $(SOURCE_FOLDER)/wordpress/webroot
 
 fclean: clean
-	${DOCKER} system prune -f
-
-re: fclean all
-
-ls:
-	docker ps -a
+	docker builder prune -f
