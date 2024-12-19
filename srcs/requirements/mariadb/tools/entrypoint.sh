@@ -12,7 +12,7 @@ done
 # Check if the MariaDB database already exists
 if ! mariadb -e "USE $MARIA_DB_NAME;" 2>/dev/null; then
     echo "Initializing MariaDB database and user..."
-    mariadb -u root < ./conf/setup.sql
+    mariadb -u root < setup.sql
 else
     echo "MariaDB is already initialized."
 fi
