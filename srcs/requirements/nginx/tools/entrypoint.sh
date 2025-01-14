@@ -7,6 +7,6 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 > /dev/null 2>&1 # silent execution
 
 # Replace config placeholders with environmental variables
-sed -i "s|ssl_cert_path|$SSL_CERT_PATH|g" /etc/nginx/sites-available/default
-sed -i "s|ssl_key_path|$SSL_KEY_PATH|g" /etc/nginx/sites-available/default
-sed -i "s|domain_name|$DOMAIN_NAME|g" /etc/nginx/sites-available/default
+sed -i "s|ssl_cert_path|$SSL_CERT_PATH|g" /etc/nginx/conf.d/default.conf
+sed -i "s|ssl_key_path|$SSL_KEY_PATH|g" /etc/nginx/conf.d/default.conf
+sed -i "s|domain_name|$DOMAIN_NAME|g" /etc/nginx/conf.d/default.conf

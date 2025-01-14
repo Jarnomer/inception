@@ -4,8 +4,8 @@
 mysqld_safe --user=root &
 
 # Wait for the MariaDB service to start
-until mysqladmin ping --silent; do
-    echo "Waiting for MariaDB to start..."
+while ! mysqladmin ping --silent; do
+    echo "Waiting for service to start..."
     sleep 2
 done
 
@@ -13,7 +13,7 @@ done
 if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
     echo "Initializing MariaDB..."
     mariadbd --initialize
-    mariadb -u root < /setup.sql
+    mariadb -u root < /etc/mysql/init.sql
 else
     echo "MariaDB is already initialized."
 fi
