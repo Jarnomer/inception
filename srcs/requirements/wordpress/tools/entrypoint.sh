@@ -1,30 +1,40 @@
-#!/bin/bash
+#!/bin/sh
 
-# Wait for MariaDB to create the database
-while ! mysqladmin -h "$DB_NAME" -u"$DB_USER" -p"$DB_PASS" ping --silent; do
-    echo "Waiting for database to initialize..."
+log() { 
+    printf "[TRACE] $1 \n" 
+}
+
+until mysql -h mariadb -u "$DB_USER" -p"$DB_PASS" -e "SHOW DATABASES;"; do
+    log "Waiting for MariaDB database..."
     sleep 5
 done
 
-# Create WordPress if none is found
 if [ ! -f /var/www/html/wp-config.php ]; then
-    echo "Initializing WordPress..."
-
-    # Download Wordpress
+    log "Downloading WordPress..."
     wp core download --allow-root
 
-    # Create configuration
-    wp core config --dbname=${WP_NAME} --dbuser=${WP_USER} \
-      --dbpass=${WP_PASS} --dbhost=${WP_HOST} --allow-root
+    log "Creating configuration..."
+    wp core config --dbname=${DB_NAME} --dbuser=${DB_USER} \
+      --dbpass=${DB_PASS} --dbhost=${DB_HOST} --allow-root
 
-    # Install wordpress
+    log "Install WordPress..."
     wp core install --url=${DOMAIN_NAME} --title=${WP_TITLE} \
-      --admin_user=admin --admin_password=admin \
-      --admin_email=admin@admin.com --allow-root
+      --admin_user=${WP_ADMIN} --admin_password=${WPA_PASS} \
+      --admin_email=${WPA_MAIL} --allow-root
 
-    # Create user
-    wp user create "${WP_USER}" "${WP_MAIL}" \
-      --user_pass="${WP_PASS}" --role=author
+    log "Installing theme..."
+    wp theme install generatepress --activate --allow-root
+
+    log "Creating user..."
+    wp user create "${WP_USER}" "${WP_MAIL}" --role=author \
+      --user_pass="${WP_PASS}" --allow-root
 else
-    echo "WordPress is already initialized."
+    log "WordPress is already setup."
 fi
+
+log "Setting permissions and owners..."
+chown -R www-data:www-data /var/www/html
+chmod -R 775 /var/www/html
+
+log "Starting the service..."
+php-fpm82 -F

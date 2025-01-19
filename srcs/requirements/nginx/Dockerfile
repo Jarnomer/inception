@@ -1,22 +1,19 @@
-# Use penultimate stable Alpine version
-FROM alpine:3.20
+# Use latest penultimate stable alpine version
+FROM alpine:3.19
 
 # Update system and install packages
 RUN apk update && apk add --no-cache nginx openssl
 
-# Setup directories and permissions
-RUN mkdir -p /etc/nginx/ssl
+# Copy nginx config file
+COPY conf/nginx.conf /etc/nginx/
+RUN chmod 644 /etc/nginx/nginx.conf
 
-# Copy config files
-COPY conf/default.conf /etc/nginx/conf.d/
+# Copy entrypoint script
+COPY tools/entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Expose default port
 EXPOSE 443
 
 # Use entrypoint script
-COPY tools/entrypoint.sh /etc/nginx/entrypoint.sh
-RUN chmod +x /etc/nginx/entrypoint.sh
-ENTRYPOINT [ "sh", "/etc/nginx/entrypoint.sh" ]
-
-# Start the service
-CMD [ "nginx", "-g", "daemon off;" ]
+ENTRYPOINT [ "sh",  "/usr/local/bin/entrypoint.sh" ]

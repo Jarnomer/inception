@@ -1,22 +1,29 @@
-#!/bin/bash
+#!/bin/sh
 
-# Start the service for setup
-mysqld_safe --user=root &
+log() { 
+    printf "[TRACE] $1 \n" 
+}
 
-# Wait for the MariaDB service to start
-while ! mysqladmin ping --silent; do
-    echo "Waiting for service to start..."
+log "Starting the service for setup..."
+mysqld &
+
+until mysqladmin ping --silent; do
+    log "Waiting for MariaDB service..."
     sleep 2
 done
 
-# Check if the MariaDB database already exists
 if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
-    echo "Initializing MariaDB..."
-    mariadbd --initialize
-    mariadb -u root < /etc/mysql/init.sql
+    log "Creating MariaDB database, users and permissions..."
+    sed -i "s/database_name/$DB_NAME/g" /etc/mysql/init.sql
+    sed -i "s/database_user/$DB_USER/g" /etc/mysql/init.sql
+    sed -i "s/database_pass/$DB_PASS/g" /etc/mysql/init.sql
+    mysql -u root < /etc/mysql/init.sql
 else
-    echo "MariaDB is already initialized."
+    log "MariaDB is already setup."
 fi
 
-# Stop the service
-mysqladmin shutdown
+log "Shutting down the service..."
+mysqladmin -u root shutdown
+
+log "Starting the service..."
+exec mysqld
