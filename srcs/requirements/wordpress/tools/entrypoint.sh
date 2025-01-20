@@ -17,13 +17,10 @@ if [ ! -f /var/www/html/wp-config.php ]; then
     wp core config --dbname=${DB_NAME} --dbuser=${DB_USER} \
       --dbpass=${DB_PASS} --dbhost=${DB_HOST} --allow-root
 
-    log "Install WordPress..."
+    log "Installing WordPress..."
     wp core install --url=${DOMAIN_NAME} --title=${WP_TITLE} \
       --admin_user=${WP_ADMIN} --admin_password=${WPA_PASS} \
       --admin_email=${WPA_MAIL} --allow-root
-
-    log "Installing theme..."
-    wp theme install generatepress --activate --allow-root
 
     log "Creating user..."
     wp user create "${WP_USER}" "${WP_MAIL}" --role=author \
