@@ -4,7 +4,7 @@ log() {
     printf "[TRACE] $1 \n" 
 }
 
-until mysql -h mariadb -u "$DB_USER" -p"$DB_PASS" -e "SHOW DATABASES;"; do
+while ! mysqladmin -h mariadb -u "$DB_USER" -p"$DB_PASS" ping --silent; do
     log "Waiting for MariaDB database..."
     sleep 5
 done
