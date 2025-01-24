@@ -1,6 +1,6 @@
 #!/bin/sh
 
-log() { 
+log() {
   printf "[TRACE] $1 \n" 
 }
 

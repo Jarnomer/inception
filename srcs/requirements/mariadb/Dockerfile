@@ -8,9 +8,6 @@ RUN apk update && apk add --no-cache mariadb mariadb-client
 RUN mkdir -p /run/mysqld /var/lib/mysql
 RUN chown -R mysql:mysql /var/lib/mysql /run/mysqld
 
-# Initialize service database and tables
-RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
-
 # Copy mariadb config file
 COPY ./conf/my.cnf /etc/mysql/
 RUN chmod 644 /etc/mysql/my.cnf

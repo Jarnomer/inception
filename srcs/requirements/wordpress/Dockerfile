@@ -2,8 +2,8 @@
 FROM alpine:3.19
 
 # Update system and install packages
-RUN apk update && apk add --no-cache mariadb-client curl \
-    php82 php82-fpm php82-mysqli php82-phar php82-mbstring php83-iconv
+RUN apk update && apk add --no-cache mariadb-client \
+    php82 php82-fpm php82-mysqli php82-phar php82-mbstring
 
 # Download and install wp-cli
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
