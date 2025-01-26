@@ -39,7 +39,7 @@ Project uses `Nginx` for networking, `MariaDB` for the database and `WordPress` 
 
 ## 🛠️ Build
 
-`Docker` is required to compile the project and create images.
+`Docker` is required to create the images and run containers. It is designed to run on `Linux`.
 
 `Data` directory is created to user's `home` by default.
 
@@ -65,7 +65,7 @@ Setup Debian/Ubuntu desktop Linux with default installer and settings (eg. 2 CPU
 
 Create user with simple password. After your first login open the terminal.
 
-### 👮 Sudoer
+#### 👮 Sudoer
 
 Start by adding the user into sudoers. You can use the same password.
 
@@ -89,7 +89,7 @@ Find line `[FILL THIS]` and add yourself there.
 user ALL=(ALL)  ALL
 ```
 
-### 📡 SSH
+#### 📡 SSH
 
 Next is SSH which will be useful for remote file editing and copying.
 
@@ -115,7 +115,7 @@ sudo service ssh restart
 sudo systemctl status ssh
 ```
 
-### 🐳 Docker
+#### 🐳 Docker
 
 Finally setting up the docker. Start by installing some packages.
 
@@ -147,7 +147,7 @@ This needs logout to take effect or optionally run this command:
 newgrp docker
 ```
 
-### 🌐 Domain
+#### 🌐 Domain
 
 As final step the subject domain has to be binded to localhost.
 
