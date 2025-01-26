@@ -22,9 +22,9 @@
 
 ## Table of Contents
 [📝 General](#-general)
-[📀 Guest](#️-build)
-[💻 Host](#-usage)
-[🚀 Testing](#-details)
+[📀 Guest](#️-guest)
+[💻 Host](#-host)
+[🚀 Test](#-test)
 [♻️ Resources](#️-resources)
 
 </div>
@@ -133,3 +133,81 @@ sudo vim /etc/hosts
 ```bash
 127.0.0.1  user.42.fr
 ```
+
+## 💻 Host
+
+## 📀 Test
+
+### Nginx
+
+Disable automatic http redirection of `Firefox`. Go to `about:config` and set these values to false.
+
+```bash
+network.stricttransportsecurity.preloadlist
+```
+
+```bash
+browser.fixup.fallback-to-https
+```
+
+First try to access http://user.42.fr and `curl -k http://user.42.fr`, both should fail.
+
+Next try to access https://user.42.fr and `curl -k https://user.42.fr`, both should work.
+
+Finally confirm that `TLS` version is correct with `curl -v https://user.42.fr`.
+
+### WordPress
+
+Go to `user.42.fr` with your browser, click on `Hello World` post and comment as random user.
+
+Next visit `user.42.fr/wp-login/`, log in as the user and add another comment.
+
+Log out and in again as `admin`, approve the comments and edit the `Hello World` post.
+
+Go back to `user.42.fr` and confirm that the edits and both comments are visible.
+
+### MariaDB
+
+Open terminal either in `guest` machine or through `SSH` and enter into mariadb container.
+
+```bash
+docker exec -it mariadb sh
+```
+
+Then log into the database. Logging in as admin without password is not allowed.
+
+```bash
+mysql wordpress -u admin
+```
+
+```bash
+mysql wordpress -u user -p
+```
+
+Following sequence of commands will show the users of the database.
+
+```bash
+SHOW DATABASES;
+```
+
+```bash
+USE <database_name>
+```
+
+```bash
+SHOW TABLES;
+```
+
+```bash
+SELECT * FROM wp_users;
+```
+
+## ♻️ Resources
+
+## 4️⃣2️⃣ Footer
+
+For my other 42 projects and general information, please refer the [Hive42](https://github.com/Jarnomer/Hive42) page.
+
+I have also created error handling [unit testers](https://github.com/Jarnomer/42Testers) for `pipex`, `so_long` and `cub3D`.
+
+### Cheers and good luck! 🥳
