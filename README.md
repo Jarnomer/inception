@@ -33,7 +33,7 @@
 
 ## 📝 General
 
-Goal of the project is learn `Docker` basics by setting up function Wordpress and database.
+Goal of the project is learn `Docker` basics by setting up function Wordpress and website.
 
 Project uses `Nginx` for networking, `MariaDB` for the database and `WordPress` for the website.
 
