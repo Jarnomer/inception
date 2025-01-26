@@ -43,6 +43,8 @@ Setup Debian/Ubuntu desktop Linux with default installer and settings (eg. 2 CPU
 
 Create user with simple password. After your first login open the terminal.
 
+### Sudoer
+
 Start by adding the user into sudoers. You can use the same password.
 
 ```bash
@@ -63,6 +65,8 @@ Find line `[FILL THIS]` and add yourself there.
 ```bash
 user ALL=(ALL)  ALL
 ```
+
+### SSH
 
 Next is SSH which will be useful for remote file editing and copying.
 
@@ -85,6 +89,8 @@ sudo service ssh restart
 ```bash
 sudo systemctl status ssh
 ```
+
+### Docker
 
 Finally setting up the docker. Start by installing some packages.
 
@@ -116,7 +122,9 @@ This needs logout to take effect or optionally run this command:
 newgrp docker
 ```
 
-As final step the subject domain has to be bind to localhost.
+### Domain
+
+As final step the subject domain has to be binded to localhost.
 
 ```bash
 sudo vim /etc/hosts
