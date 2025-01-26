@@ -22,7 +22,7 @@
 
 ## Table of Contents
 [📝 General](#-general)
-[📀 Guest](#️-guest)
+[💽 Guest](#️-guest)
 [💻 Host](#-host)
 [🚀 Test](#-test)
 [♻️ Resources](#️-resources)
@@ -37,19 +37,20 @@ Further down `guest` means is your `virtual machine` and `host` local machine.
 
 Also `user` will refer to your intra name and `admin` to `sudoer`.
 
-## 📀 Guest
+## 💽 Guest
 
 Setup Debian/Ubuntu desktop Linux with default installer and settings (eg. 2 CPU / 4GB RAM / 20GB HD).
 
 Create user with simple password. After your first login open the terminal.
 
-### Sudoer
+### 👮 Sudoer
 
 Start by adding the user into sudoers. You can use the same password.
 
 ```bash
 su -
 ```
+
 ```bash
 adduser user sudo
 ```
@@ -66,13 +67,14 @@ Find line `[FILL THIS]` and add yourself there.
 user ALL=(ALL)  ALL
 ```
 
-### SSH
+### 📡 SSH
 
 Next is SSH which will be useful for remote file editing and copying.
 
 ```bash
 sudo apt install openssh-client openssh-server vim -y
 ```
+
 ```bash
 sudo vim /etc/ssh/sshd_config
 ```
@@ -86,11 +88,12 @@ Then restart SSH and check that it is enabled and active.
 ```bash
 sudo service ssh restart
 ```
+
 ```bash
 sudo systemctl status ssh
 ```
 
-### Docker
+### 🐳 Docker
 
 Finally setting up the docker. Start by installing some packages.
 
@@ -122,7 +125,7 @@ This needs logout to take effect or optionally run this command:
 newgrp docker
 ```
 
-### Domain
+### 🌐 Domain
 
 As final step the subject domain has to be binded to localhost.
 
@@ -152,7 +155,7 @@ It also works other way around.
 scp -P 6000 -r user@localhost:/home/user/inception /home/user 
 ```
 
-### 📝 Remote SSH
+### 📡 Remote SSH
 
 It might be convenient to edit the files of your guest machine via IDE like `VSCode`.
 
@@ -188,7 +191,7 @@ Log out and in again as `admin`, approve the comments and edit the `Hello World`
 
 Go back to `user.42.fr` and confirm that the edits and both comments are visible.
 
-### MariaDB
+### 📖 MariaDB
 
 Open terminal either in `guest` machine or through `SSH` and enter into mariadb container.
 
