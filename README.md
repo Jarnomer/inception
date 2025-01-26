@@ -22,9 +22,106 @@
 
 ## Table of Contents
 [📝 General](#-general)
-[🛠️ Build](#️-build)
-[⚡ Usage](#-usage)
-[🚀 Details](#-details)
+[📀 Guest](#️-build)
+[💻 Host](#-usage)
+[🚀 Testing](#-details)
 [♻️ Resources](#️-resources)
 
 </div>
+
+## 📝 General
+
+Goal of the project is learn `Docker` basics by setting up function Wordpress and database.
+
+Further down `guest` means is your `virtual machine` and `host` local machine.
+
+Also `user` will refer to your intra name and `admin` to `sudoer`.
+
+## 📀 Guest
+
+Setup Debian/Ubuntu desktop Linux with default installer and settings (eg. 2 CPU / 4GB RAM / 20GB HD).
+
+Create user with simple password. After your first login open the terminal.
+
+Start by adding the user into sudoers. You can use the same password.
+
+```bash
+su -
+```
+```bash
+adduser user sudo
+```
+
+On Debian at least, you also have to modify the sudoers file.
+
+```bash
+nano /etc/sudoers
+```
+
+Find line `[FILL THIS]` and add yourself there.
+
+```bash
+user ALL=(ALL)  ALL
+```
+
+Next is SSH which will be useful for remote file editing and copying.
+
+```bash
+sudo apt install openssh-client openssh-server vim -y
+```
+```bash
+sudo vim /etc/ssh/sshd_config
+```
+
+Find the line that says `#Port 22`, uncomment and change it.
+
+The value has to be over 1024, using 6000 for future reference.
+
+Then restart SSH and check that it is enabled and active.
+
+```bash
+sudo service ssh restart
+```
+```bash
+sudo systemctl status ssh
+```
+
+Finally setting up the docker. Start by installing some packages.
+
+```bash
+sudo apt install apt-transport-https ca-certificates -y
+```
+
+Next setup Docker repository following [this](https://docs.docker.com/engine/install/debian/#install-using-the-repository) official guideline and install its packages.
+
+```bash
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+```
+
+To verity that Docker has been installed correctly, you can run:
+
+```bash
+sudo docker run hello-world
+```
+
+After verification the user has to be added into docker group.
+
+```bash
+sudo usermod -aG docker user
+```
+
+This needs logout to take effect or optionally run this command:
+
+```bash
+newgrp docker
+```
+
+As final step the subject domain has to be bind to localhost.
+
+```bash
+sudo vim /etc/hosts
+```
+
+```bash
+127.0.0.1  user.42.fr
+```
