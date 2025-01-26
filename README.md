@@ -249,7 +249,7 @@ SHOW TABLES;
 SELECT * FROM wp_users;
 ```
 
-### Persistance
+#### Persistance
 
 Simply restart your guest machine and make sure that WordPress changes persist.
 
