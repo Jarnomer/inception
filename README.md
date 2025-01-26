@@ -138,6 +138,28 @@ sudo vim /etc/hosts
 
 ## 📀 Test
 
+### Secure Copy
+
+Since guest can't directly download the repository, you can use `scp` to copy it from the host.
+
+Following command will copy whole repository into guest `home` directory.
+
+```bash
+scp -P 6000 -r /home/user/inception user@localhost:/home/user
+```
+
+It also works other way around.
+
+```bash
+scp -P 6000 -r user@localhost:/home/user/inception /home/user 
+```
+
+### Remote SSH
+
+It might be convenient to be able to edit the files of your guest machine via `VSCode`.
+
+[THIS SECTION NEEDS FILLING]
+
 ### Nginx
 
 Disable automatic http redirection of `Firefox`. Go to `about:config` and set these values to false.
@@ -177,11 +199,11 @@ docker exec -it mariadb sh
 Then log into the database. Logging in as admin without password is not allowed.
 
 ```bash
-mysql wordpress -u admin
+mysql <database_name> -u admin
 ```
 
 ```bash
-mysql wordpress -u user -p
+mysql <database_name> -u user -p
 ```
 
 Following sequence of commands will show the users of the database.
