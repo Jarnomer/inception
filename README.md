@@ -227,6 +227,10 @@ SHOW TABLES;
 SELECT * FROM wp_users;
 ```
 
+### Persistance
+
+Simply restart your guest machine and make sure that WordPress changes persist.
+
 ## ♻️ Resources
 
 ## 4️⃣2️⃣ Footer
