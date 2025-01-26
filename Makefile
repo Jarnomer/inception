@@ -28,11 +28,11 @@ logs:
 	@$(DOCKER_COMPOSE) logs
 
 volumes:
-	docker volumes ls
+	docker volume ls
 	docker volume inspect mariadb
 	docker volume inspect wordpress
 
 $(MARIADB) $(WORDPRESS):
 	mkdir -p $@
 
-.PHONY: all up down re clean fclean ps logs
+.PHONY: all up down re clean fclean ps logs volumes

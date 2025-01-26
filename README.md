@@ -22,9 +22,11 @@
 
 ## Table of Contents
 [📝 General](#-general)
+[🛠️ Build](#️-build)
+[⚡ Usage](#-usage)
 [💽 Guest](#️-guest)
 [💻 Host](#-host)
-[🚀 Test](#-test)
+[🚀 Evaluate](#-evaluate)
 [♻️ Resources](#️-resources)
 
 </div>
@@ -32,6 +34,30 @@
 ## 📝 General
 
 Goal of the project is learn `Docker` basics by setting up function Wordpress and database.
+
+Project uses `Nginx` for networking, `MariaDB` for the database and `WordPress` for the website.
+
+## 🛠️ Build
+
+`Docker` is required to compile the project and create images.
+
+`Data` directory is created to user's `home` by default.
+
+```bash
+git clone https://github.com/Jarnomer/inception.git
+```
+
+```bash
+cd inception && make all
+```
+
+## ⚡ Usage
+
+Once all `containers` have started, wait a moment for WordPress to finish its installation.
+
+If you proceed to `quickly`, you will encouter `403 Forbidden` or `502 Bad Gateway` errors.
+
+Visit https://localhost to open the running WordPress website.
 
 ## 💽 Guest
 
@@ -157,7 +183,7 @@ It might be convenient to edit the files of your guest machine via IDE like `VSC
 
 `[THIS SECTION NEEDS FILLING]`
 
-## 🚀 Test
+## 🚀 Evaluate
 
 ### 🚚 Nginx
 
