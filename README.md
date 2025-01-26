@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    <b><i>Deploy PHP server with NGINX, Wordpress and MariaDB using 🐳 Docker.</i></b><br>
+    <b><i>Deploy PHP website with NGINX, Wordpress and MariaDB using 🐳 Docker.</i></b><br>
 </p>
 
 <p align="center">
