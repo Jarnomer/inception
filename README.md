@@ -33,10 +33,6 @@
 
 Goal of the project is learn `Docker` basics by setting up function Wordpress and database.
 
-Further down `guest` means is your `virtual machine` and `host` local machine.
-
-Also `user` will refer to your intra name and `admin` to `sudoer`.
-
 ## 💽 Guest
 
 Setup Debian/Ubuntu desktop Linux with default installer and settings (eg. 2 CPU / 4GB RAM / 20GB HD).
