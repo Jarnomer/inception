@@ -161,7 +161,7 @@ sudo vim /etc/hosts
 
 ## 💻 Host
 
-### 💾 Secure Copy
+#### 💾 Secure Copy
 
 Since guest can't directly download the repository, you can use `scp` to copy it from the host.
 
@@ -177,7 +177,7 @@ It also works other way around.
 scp -P 6000 -r user@localhost:/home/user/inception /home/user 
 ```
 
-### 📡 Remote SSH
+#### 📡 Remote SSH
 
 It might be convenient to edit the files of your guest machine via IDE like `VSCode`.
 
@@ -185,7 +185,7 @@ It might be convenient to edit the files of your guest machine via IDE like `VSC
 
 ## 🚀 Evaluate
 
-### 🚚 Nginx
+#### 🚚 Nginx
 
 Disable automatic http redirection of `Firefox`. Go to `about:config` and set these values to false.
 
@@ -203,7 +203,7 @@ Next try to access https://user.42.fr and `curl -k https://user.42.fr`, both sho
 
 Finally confirm that `TLS` version is correct with `curl -v https://user.42.fr`.
 
-### 🌐 WordPress
+#### 🌐 WordPress
 
 Go to `user.42.fr` with your browser, click on `Hello World` post and comment as random user.
 
@@ -213,7 +213,7 @@ Log out and in again as `admin`, approve the comments and edit the `Hello World`
 
 Go back to `user.42.fr` and confirm that the edits and both comments are visible.
 
-### 📖 MariaDB
+#### 📖 MariaDB
 
 Open terminal either in `guest` machine or through `SSH` and enter into mariadb container.
 
