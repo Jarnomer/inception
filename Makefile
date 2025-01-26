@@ -27,6 +27,11 @@ ps:
 logs:
 	@$(DOCKER_COMPOSE) logs
 
+volumes:
+	docker volumes ls
+	docker volume inspect mariadb
+	docker volume inspect wordpress
+
 $(MARIADB) $(WORDPRESS):
 	mkdir -p $@
 

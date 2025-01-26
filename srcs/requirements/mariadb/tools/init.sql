@@ -9,8 +9,8 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'database_pass';
 
 -- Create the user if it doesn't already exist and set permissions
 -- Placeholders are replaced by the entrypoint script
-CREATE USER IF NOT EXISTS 'database_user'@'localhost' IDENTIFIED BY 'database_pass';
-GRANT ALL PRIVILEGES ON `database_name`.* TO 'database_user'@'localhost';
+CREATE USER IF NOT EXISTS 'database_user'@'%' IDENTIFIED BY 'database_pass';
+GRANT ALL PRIVILEGES ON `database_name`.* TO 'database_user'@'%';
 
 -- Reload tables and apply changes
 FLUSH PRIVILEGES;
