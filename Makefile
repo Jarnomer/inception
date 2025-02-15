@@ -29,8 +29,8 @@ logs:
 
 volumes:
 	docker volume ls
-	docker volume inspect mariadb
-	docker volume inspect wordpress
+	docker volume inspect srcs_mariadb
+	docker volume inspect srcs_wordpress
 
 $(MARIADB) $(WORDPRESS):
 	mkdir -p $@
