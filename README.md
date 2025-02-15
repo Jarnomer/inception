@@ -33,13 +33,17 @@
 
 ## 📝 General
 
-Goal of the project is learn `Docker` basics by setting up function Wordpress and website.
+Goal of the project is learn `Docker` basics by setting up function Wordpress and database.
 
 Project uses `Nginx` for networking, `MariaDB` for the database and `WordPress` for the website.
 
+The README focuses on setting up you host and guest machines as well as evaluation the project.
+
+Project files are thoroughly commented for details. You can also checked the `resources`.
+
 ## 🛠️ Build
 
-`Docker` is required to create the images and run containers. It is designed to run on `Linux`.
+`Docker` is required to create the images and run containers. It was designed to run on `Linux`.
 
 `Data` directory is created to user's `home` by default.
 
@@ -83,7 +87,7 @@ On Debian at least, you also have to modify the sudoers file.
 nano /etc/sudoers
 ```
 
-Find line `[FILL THIS]` and add yourself there.
+Find `#User privilege specification` and add yourself there.
 
 ```bash
 user ALL=(ALL)  ALL
@@ -181,7 +185,13 @@ scp -P 6000 -r user@localhost:/home/user/inception /home/user
 
 It might be convenient to edit the files of your guest machine via IDE like `VSCode`.
 
-`[THIS SECTION NEEDS FILLING]`
+Begin by downloading `Remote - SSH` extension then select it from the `Activity Bar`.
+
+Click on `+` sign next to `SSH` and insert `user@localhost:6000`.
+
+At the top of the screen you will see a `prompt` to insert your password.
+
+After connection has been established, you can open guest folders like you would normally.
 
 ## 🚀 Evaluate
 
@@ -254,6 +264,10 @@ SELECT * FROM wp_users;
 Simply restart your guest machine and make sure that WordPress changes persist.
 
 ## ♻️ Resources
+
+[Inception #42 project](https://medium.com/@ssterdev/inception-guide-42-project-part-i-7e3af15eb671) Medium article on how to get started with the project.
+
+[Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh) Official MS documentation on setting up SSH with VSCode.
 
 ## 4️⃣2️⃣ Footer
 
